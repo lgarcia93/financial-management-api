@@ -4,7 +4,7 @@
 
 ### Motivation
 
-I created this project mainly to leverage many different AWS services such as ECS (Elastic Container Service) and EC2 for running containers, ECR (Elastic Container Repository) to store the Docker images, Amazon S3, Amazon MySQL RDS, Simple Systems Manager and more. 
+I created this project mainly to leverage many different AWS services such as Elastic Load Balancer, ECS (Elastic Container Service) and EC2 for running containers, ECR (Elastic Container Repository) to store the Docker images, Amazon S3, Amazon MySQL RDS, Simple Systems Manager and more. 
 Also, I wanted this infrastructure to be easily replicated by anyone by just using the code provided in this repository. For this purpose, I used Terraform to write Infrastructure as Code (IaC). 
 It's not my intention to build a highly complex .NET Rest API, but to show how to use AWS Services to create scalable and highly available applications.
 
