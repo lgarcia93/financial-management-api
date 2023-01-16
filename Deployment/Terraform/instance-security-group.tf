@@ -1,6 +1,6 @@
 resource "aws_security_group" "ec2-sg" {
-  name   = "financial-management-sg"
-  vpc_id = aws_vpc.financial-management-vpc.id
+  name   = "${var.app_name}-sg"
+  vpc_id = aws_vpc.vpc.id
 
   ingress {
     from_port   = 22
@@ -8,12 +8,11 @@ resource "aws_security_group" "ec2-sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
-  #Financial Service
+  
   ingress {
-    from_port = 5000
+    from_port = var.app_port
     protocol  = "tcp"
-    to_port   = 5000
+    to_port   = var.app_port
     #Accept requests on port 80 only from Network Load Balancer
     security_groups = [
       aws_security_group.alb_security_group.id

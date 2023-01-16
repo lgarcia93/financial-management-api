@@ -1,6 +1,6 @@
 resource "aws_security_group" "rds_sg" {
-  name   = "financial-management-database-sg"
-  vpc_id = aws_vpc.financial-management-vpc.id
+  name   = "${var.app_name}-database-sg"
+  vpc_id = aws_vpc.vpc.id
 
   ingress {
     from_port   = 3306
@@ -19,12 +19,12 @@ resource "aws_security_group" "rds_sg" {
 
 resource "aws_db_instance" "database_instance" {
   allocated_storage = 20
-  identifier        = "financial-management-instance"
-  storage_type      = "gp2"
+  identifier        = "${var.app_name}-db-instance"
+  storage_type      = var.rds_storage_type
   engine            = "mysql"
   engine_version    = "5.7"
-  instance_class    = "db.t3.micro"
-  db_name           = "dbfinancialtransaction"
+  instance_class    = var.rds_instance_class
+  db_name           = var.db_name
   username          = aws_ssm_parameter.rds-database-user.value
   multi_az = false  
   password             = aws_ssm_parameter.rds-database-master-password.value
@@ -37,6 +37,6 @@ resource "aws_db_instance" "database_instance" {
 
 resource "aws_db_subnet_group" "db_subnet_group" {
   name = "db_subnets"
-  subnet_ids = [aws_subnet.financial-management-public-us-east-1a.id, aws_subnet.financial-management-public-us-east-1b.id]
+  subnet_ids = [aws_subnet.public-us-east-1a.id, aws_subnet.public-us-east-1b.id]
 
 }

@@ -34,9 +34,9 @@ public class DapperContext
     public async Task<IDbConnection> CreateConnection()
     {
 
-        var rdsAddress = await GetParameterByName("rds_address");
-        var rdsUser = await GetParameterByName("rds_user");
-        var rdsPassword = await GetParameterByName("rds_password");
+        var rdsAddress = await GetParameterByName("rds-address-financial-management");
+        var rdsUser = await GetParameterByName("rds-user-financial-management");
+        var rdsPassword = await GetParameterByName("rds-password-financial-management");
       
        var connString =
             $"Server={rdsAddress};port=3306;Database=dbfinancialtransaction;User Id={rdsUser};Password={rdsPassword};Ssl Mode=None";

@@ -37,7 +37,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "cloudwatch-policy" {
-  name = "cloud-watch-financial-management-policy"
+  name = "cloud-watch-${var.app_name}-policy"
   role = aws_iam_role.default.id
   policy = <<EOF
 {
@@ -58,6 +58,6 @@ EOF
 }
 
 resource "aws_iam_instance_profile" "ec2_instance_profile" {
-  name = "FinancialManagement-EC2-Instance-Profile"
+  name = "${var.app_name}-EC2-Instance-Profile"
   role = aws_iam_role.default.name
 }
